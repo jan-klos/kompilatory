@@ -1,15 +1,16 @@
-
 class Environment:
     command_list = []  
     stack = []
 
-    def ee(self, list):
+    def execute(self, list):
         self.command_list = list
-        return self.execute()
+        print(self.command_list)
+        return self.execute1()
 
-    def execute(self):
+    def execute1(self):
+        print (self.stack)
         if self.command_list[0].split(" ")[0] == "put":
-            self.stack.append(int(self.command_list[0].split(" ")[1]))
+            self.stack.append(float(self.command_list[0].split(" ")[1]))
         elif self.command_list[0] == "add":
             self.compute("add")
         elif self.command_list[0] == "mul":
@@ -19,13 +20,13 @@ class Environment:
         else:
             raise ValueError("Invalid command: %s" % (self.command_list[0])) 
         self.command_list.pop(0)
-        return self.execute()
+        return self.execute1()
 
     def compute(self, oper):
         try:
             if (oper == "add"):
                 n = self.stack.pop() + self.stack.pop()
-            else:
+            elif (oper == "mul"):
                 n = self.stack.pop() * self.stack.pop()
             self.stack.append(n)
         except:

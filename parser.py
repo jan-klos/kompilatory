@@ -33,7 +33,7 @@ class Parser:
     def expression_to_rpn(self, expression):
         stack, rpn = [], []
         for item in expression:
-            if item.isdigit():
+            if self.is_number(item):
                 rpn.append(item)
             elif self.is_operator(item):
                 if not stack or self.precedence(stack[-1]) < self.precedence(item):
@@ -51,6 +51,14 @@ class Parser:
             return 10
         elif operator == "+":
             return 5
+
+    def is_number(self, s):
+        try:
+            float(s)
+            return True
+        except ValueError:
+            return False
+
 
 
 

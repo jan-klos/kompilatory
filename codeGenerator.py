@@ -18,4 +18,6 @@ class CodeGenerator:
             elif item is not None:
                 command_list.append("put " + item)
         command_list.append("end")
+        print(command_list)
         return command_list
+
