@@ -7,18 +7,17 @@ class Scaner:
     def scan(self, string):
         string = string.replace(" ", "")
         self.scan1(string)
-        print(self.token_list)
-        for i in range (0, len(self.token_list) - 1):
-            if i < len(self.token_list) - 1:
-                if  self.token_list[i + 1] == ".":
-                    self.token_list.pop(i + 1)
+        for i in range (0, len(self.token_list)-1):
+            if i < len(self.token_list)-1:
+                if  self.token_list[i+1] == ".":
+                    self.token_list.pop(i+1)
                 if self.token_list[i] == "-":
                     self.token_list[i] = "+"
-                    self.token_list[i + 1] = "-" + self.token_list[i + 1]
+                    self.token_list[i+1] = "-" + self.token_list[i+1]
                 elif self.token_list[i] == "/":
                     self.token_list[i] = "*"
-                    self.token_list[i + 1] = (str)(1.0 / (float)(self.token_list[i + 1]))
-        print(self.token_list)
+                    self.token_list[i+1] = (str)(1.0 / (float)(self.token_list[i+1]))
+        self.token_list.remove("\n")
         return self.token_list            
 
     def scan1(self, string):

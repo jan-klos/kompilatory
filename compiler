@@ -1,0 +1,32 @@
+#!/usr/bin/python
+from scaner import Scaner
+from parser import Parser
+from codeGenerator import CodeGenerator
+import sys
+
+for line in sys.stdin:
+    expression = str(line)
+    break
+
+print("Expression: " + expression)
+ 
+s = Scaner()
+p = Parser()
+cg = CodeGenerator()
+
+sc = s.scan(expression)
+rpn = p.expression_to_rpn(sc)
+tree = p.construct_tree(rpn)
+command_list = cg.create_commands(tree)
+cl = ""
+for item in command_list:
+    print(item)
+    cl = cl + item + ";"
+sys.stdout.write(cl)
+
+
+
+            
+
+
+
